@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar.jsx';
+import Footer from '../components/Footer.jsx';
 import './PrivacyPolicy.css';
 
 export default function PrivacyPolicy() {
@@ -19,22 +21,9 @@ export default function PrivacyPolicy() {
 
   return (
     <div className="privacy-page" data-force-light>
-      {/* ── Mini Navbar ── */}
-      <header className="privacy-nav">
-        <div className="privacy-nav__inner">
-          <Link to="/" className="privacy-nav__brand">
-            <span className="privacy-nav__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-              </svg>
-            </span>
-            BookShelf
-          </Link>
-          <Link to="/" className="privacy-nav__back">← Back to Store</Link>
-        </div>
-      </header>
+      {/* ── Navbar (same as landing page, light mode) ── */}
+      <Navbar cartCount={0} onCartClick={() => {}} />
+      <div className="nav-spacer" />
 
       {/* ── Hero ── */}
       <section className="privacy-hero">
@@ -238,13 +227,8 @@ export default function PrivacyPolicy() {
         </div>
       </article>
 
-      {/* ── Footer ── */}
-      <footer className="privacy-footer">
-        <div className="privacy-footer__inner">
-          <p>© {new Date().getFullYear()} BookShelf. All rights reserved.</p>
-          <Link to="/">Back to Store</Link>
-        </div>
-      </footer>
+      {/* ── Footer (same as landing page, light mode) ── */}
+      <Footer />
     </div>
   );
 }
