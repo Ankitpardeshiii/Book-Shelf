@@ -1,24 +1,16 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
+import ThemeToggle from '../components/ThemeToggle.jsx';
 import './AboutUs.css';
 
 export default function AboutUs() {
-  /* Force light mode on this page */
-  useEffect(() => {
-    const root = document.documentElement;
-    const prev = root.getAttribute('data-theme');
-    root.setAttribute('data-theme', 'light');
-    return () => {
-      if (prev) root.setAttribute('data-theme', prev);
-      else root.removeAttribute('data-theme');
-    };
-  }, []);
-
   return (
-    <div className="about-page" data-force-light>
-      {/* ── Navbar (same as landing page, light mode) ── */}
+    <div className="about-page">
+      {/* ── Theme toggle (same as landing page) ── */}
+      <ThemeToggle />
+
+      {/* ── Navbar (same as landing page) ── */}
       <Navbar cartCount={0} onCartClick={() => {}} />
       <div className="nav-spacer" />
 
@@ -169,7 +161,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── Footer (same as landing page, light mode) ── */}
+      {/* ── Footer (same as landing page) ── */}
       <Footer />
     </div>
   );

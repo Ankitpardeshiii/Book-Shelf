@@ -1,77 +1,14 @@
 /* ═══════════════════════════════════════════════════
-   About Us page — LIGHT MODE ONLY
-   Completely self-contained, ignores data-theme
+   About Us page — Supports light & dark themes
    ═══════════════════════════════════════════════════ */
 
-/* ── Force light palette on the entire page ── */
-.about-page,
-.about-page * {
-  --paper: #F5F0E5;
-  --paper-dim: #ECE3D1;
-  --ink: #221E19;
-  --ink-soft: #55503F;
-  --leather: #B85C2C;
-  --leather-deep: #93461F;
-  --pine: #1F4B43;
-  --pine-deep: #14332D;
-  --gold: #C69A2A;
-  --line: rgba(34, 30, 25, 0.12);
-}
-
 .about-page {
-  background: #FDFAF3;
+  background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-}
-
-/* ── Force shared Navbar into light mode ── */
-.about-page .nav-wrapper .nav {
-  background: #ffffff !important;
-  color: var(--ink) !important;
-}
-
-.about-page .nav-wrapper .nav__brand {
-  color: var(--ink) !important;
-}
-
-.about-page .nav-wrapper .nav__links a {
-  color: var(--ink-soft) !important;
-}
-
-.about-page .nav-wrapper .nav__links a:hover {
-  color: var(--leather-deep) !important;
-  background: rgba(184, 92, 44, 0.07) !important;
-}
-
-.about-page .nav-wrapper .nav__search {
-  background: #f8f6f2 !important;
-  color: var(--ink) !important;
-  border-color: rgba(34, 30, 25, 0.12) !important;
-}
-
-.about-page .nav-wrapper .nav__cart {
-  background: var(--ink) !important;
-  color: #ffffff !important;
-}
-
-.about-page .nav-wrapper .nav__cart-count {
-  background: var(--leather) !important;
-  color: #ffffff !important;
-}
-
-.about-page .nav-wrapper .nav__hamburger {
-  color: var(--ink) !important;
-  border-color: rgba(34, 30, 25, 0.12) !important;
-}
-
-.about-page .nav-wrapper .nav__mobile-menu {
-  background: #ffffff !important;
-}
-
-.about-page .nav-wrapper .nav__mobile-menu a {
-  color: var(--ink-soft) !important;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* ── Hero ── */
@@ -198,8 +135,8 @@
 }
 
 .about-values__card {
-  background: #FFFFFF;
-  border: 1px solid rgba(34, 30, 25, 0.07);
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
   border-radius: 14px;
   padding: 36px 32px;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
@@ -344,15 +281,15 @@
   top: 4px;
   width: 16px;
   height: 16px;
-  background: #FFFFFF;
+  background: var(--paper);
   border: 3px solid var(--leather);
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(184, 92, 44, 0.1);
 }
 
 .about-timeline__content {
-  background: #FFFFFF;
-  border: 1px solid rgba(34, 30, 25, 0.07);
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
   border-radius: 10px;
   padding: 20px 24px;
   transition: box-shadow 0.25s ease;
@@ -439,7 +376,7 @@
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ink);
+  color: #221E19;
   background: var(--gold);
   padding: 14px 28px;
   border-radius: 8px;
@@ -454,39 +391,41 @@
   transform: translateY(-2px);
 }
 
-/* ── Force shared Footer into light mode ── */
+/* ── Footer margin reset ── */
 .about-page .footer {
-  background: var(--ink) !important;
-  color: var(--paper) !important;
   margin-top: 0;
 }
 
-.about-page .footer__logo {
-  color: #ffffff !important;
+/* ═══════════════════════════════════════════════════
+   Dark mode overrides
+   ═══════════════════════════════════════════════════ */
+[data-theme="dark"] .about-values__card:hover {
+  box-shadow: 0 20px 44px -16px rgba(0, 0, 0, 0.35);
 }
 
-.about-page .footer__desc {
-  color: rgba(245, 240, 229, 0.55) !important;
+[data-theme="dark"] .about-values__card-icon {
+  background: rgba(217, 121, 61, 0.12);
 }
 
-.about-page .footer__col-title {
-  color: rgba(245, 240, 229, 0.4) !important;
+[data-theme="dark"] .about-team__avatar {
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
 }
 
-.about-page .footer__col-links a {
-  color: rgba(245, 240, 229, 0.75) !important;
+[data-theme="dark"] .about-team__member:hover .about-team__avatar {
+  box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.5);
 }
 
-.about-page .footer__col-links a:hover {
-  color: #ffffff !important;
+[data-theme="dark"] .about-timeline__content:hover {
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.35);
 }
 
-.about-page .footer__copy {
-  color: rgba(245, 240, 229, 0.35) !important;
+[data-theme="dark"] .about-cta__inner {
+  background: linear-gradient(145deg, #0F0D0A, #1A1611);
+  border: 1px solid rgba(243, 236, 221, 0.06);
 }
 
-.about-page .footer__built {
-  color: rgba(245, 240, 229, 0.25) !important;
+[data-theme="dark"] .about-hero::before {
+  background: radial-gradient(circle, rgba(217, 121, 61, 0.08) 0%, transparent 70%);
 }
 
 /* ── Animations ── */
@@ -545,7 +484,6 @@
 }
 
 @media (max-width: 560px) {
-
   .about-hero {
     padding: 56px 20px 40px;
   }

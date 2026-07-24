@@ -1,76 +1,14 @@
 /* ═══════════════════════════════════════════════════
-   Privacy Policy page — LIGHT MODE ONLY
+   Privacy Policy page — Supports light & dark themes
    ═══════════════════════════════════════════════════ */
 
-/* ── Force light palette ── */
-.privacy-page,
-.privacy-page * {
-  --paper: #F5F0E5;
-  --paper-dim: #ECE3D1;
-  --ink: #221E19;
-  --ink-soft: #55503F;
-  --leather: #B85C2C;
-  --leather-deep: #93461F;
-  --pine: #1F4B43;
-  --pine-deep: #14332D;
-  --gold: #C69A2A;
-  --line: rgba(34, 30, 25, 0.12);
-}
-
 .privacy-page {
-  background: #FDFAF3;
+  background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-}
-
-/* ── Force shared Navbar into light mode ── */
-.privacy-page .nav-wrapper .nav {
-  background: #ffffff !important;
-  color: var(--ink) !important;
-}
-
-.privacy-page .nav-wrapper .nav__brand {
-  color: var(--ink) !important;
-}
-
-.privacy-page .nav-wrapper .nav__links a {
-  color: var(--ink-soft) !important;
-}
-
-.privacy-page .nav-wrapper .nav__links a:hover {
-  color: var(--leather-deep) !important;
-  background: rgba(184, 92, 44, 0.07) !important;
-}
-
-.privacy-page .nav-wrapper .nav__search {
-  background: #f8f6f2 !important;
-  color: var(--ink) !important;
-  border-color: rgba(34, 30, 25, 0.12) !important;
-}
-
-.privacy-page .nav-wrapper .nav__cart {
-  background: var(--ink) !important;
-  color: #ffffff !important;
-}
-
-.privacy-page .nav-wrapper .nav__cart-count {
-  background: var(--leather) !important;
-  color: #ffffff !important;
-}
-
-.privacy-page .nav-wrapper .nav__hamburger {
-  color: var(--ink) !important;
-  border-color: rgba(34, 30, 25, 0.12) !important;
-}
-
-.privacy-page .nav-wrapper .nav__mobile-menu {
-  background: #ffffff !important;
-}
-
-.privacy-page .nav-wrapper .nav__mobile-menu a {
-  color: var(--ink-soft) !important;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* ── Hero ── */
@@ -142,8 +80,8 @@
 .privacy-toc {
   position: sticky;
   top: 80px;
-  background: #FFFFFF;
-  border: 1px solid rgba(34, 30, 25, 0.07);
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
   border-radius: 14px;
   padding: 28px 24px;
 }
@@ -317,7 +255,7 @@
   overflow-x: auto;
   margin: 12px 0 16px;
   border-radius: 10px;
-  border: 1px solid rgba(34, 30, 25, 0.07);
+  border: 1px solid var(--line);
 }
 
 .privacy-table {
@@ -339,7 +277,7 @@
   color: var(--ink-soft);
   text-align: left;
   padding: 12px 16px;
-  border-bottom: 1px solid rgba(34, 30, 25, 0.07);
+  border-bottom: 1px solid var(--line);
 }
 
 .privacy-table td {
@@ -365,8 +303,8 @@
 
 /* ── Contact card ── */
 .privacy-contact-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(34, 30, 25, 0.07);
+  background: var(--paper-dim);
+  border: 1px solid var(--line);
   border-radius: 10px;
   padding: 20px 24px;
   display: flex;
@@ -399,39 +337,41 @@
   color: var(--leather-deep);
 }
 
-/* ── Force shared Footer into light mode ── */
+/* ── Footer margin reset ── */
 .privacy-page .footer {
-  background: var(--ink) !important;
-  color: var(--paper) !important;
   margin-top: 0;
 }
 
-.privacy-page .footer__logo {
-  color: #ffffff !important;
+/* ═══════════════════════════════════════════════════
+   Dark mode overrides
+   ═══════════════════════════════════════════════════ */
+[data-theme="dark"] .privacy-hero::before {
+  background: radial-gradient(circle, rgba(47, 110, 95, 0.08) 0%, transparent 70%);
 }
 
-.privacy-page .footer__desc {
-  color: rgba(245, 240, 229, 0.55) !important;
+[data-theme="dark"] .privacy-section__number {
+  color: rgba(243, 236, 221, 0.04);
 }
 
-.privacy-page .footer__col-title {
-  color: rgba(245, 240, 229, 0.4) !important;
+[data-theme="dark"] .privacy-toc__list a:hover {
+  background: rgba(243, 236, 221, 0.04);
 }
 
-.privacy-page .footer__col-links a {
-  color: rgba(245, 240, 229, 0.75) !important;
+[data-theme="dark"] .privacy-table thead {
+  background: rgba(243, 236, 221, 0.03);
 }
 
-.privacy-page .footer__col-links a:hover {
-  color: #ffffff !important;
+[data-theme="dark"] .privacy-table td {
+  border-bottom-color: rgba(243, 236, 221, 0.04);
 }
 
-.privacy-page .footer__copy {
-  color: rgba(245, 240, 229, 0.35) !important;
+[data-theme="dark"] .privacy-table code {
+  background: rgba(217, 121, 61, 0.12);
 }
 
-.privacy-page .footer__built {
-  color: rgba(245, 240, 229, 0.25) !important;
+[data-theme="dark"] .privacy-callout {
+  background: rgba(47, 110, 95, 0.08);
+  border-color: rgba(47, 110, 95, 0.18);
 }
 
 /* ── Responsive ── */

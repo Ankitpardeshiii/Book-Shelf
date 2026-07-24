@@ -2,26 +2,23 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
+import ThemeToggle from '../components/ThemeToggle.jsx';
 import './PrivacyPolicy.css';
 
 export default function PrivacyPolicy() {
-  /* Force light mode on this page */
+  /* Scroll to top on mount */
   useEffect(() => {
-    const root = document.documentElement;
-    const prev = root.getAttribute('data-theme');
-    root.setAttribute('data-theme', 'light');
     window.scrollTo(0, 0);
-    return () => {
-      if (prev) root.setAttribute('data-theme', prev);
-      else root.removeAttribute('data-theme');
-    };
   }, []);
 
   const lastUpdated = 'July 24, 2025';
 
   return (
-    <div className="privacy-page" data-force-light>
-      {/* ── Navbar (same as landing page, light mode) ── */}
+    <div className="privacy-page">
+      {/* ── Theme toggle (same as landing page) ── */}
+      <ThemeToggle />
+
+      {/* ── Navbar (same as landing page) ── */}
       <Navbar cartCount={0} onCartClick={() => {}} />
       <div className="nav-spacer" />
 
@@ -227,7 +224,7 @@ export default function PrivacyPolicy() {
         </div>
       </article>
 
-      {/* ── Footer (same as landing page, light mode) ── */}
+      {/* ── Footer (same as landing page) ── */}
       <Footer />
     </div>
   );
