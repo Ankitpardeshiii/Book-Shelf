@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
       <ThemeToggle />
 
       {/* ── Navbar (same as landing page) ── */}
-      <Navbar cartCount={0} onCartClick={() => {}} />
+      <Navbar cartCount={0} onCartClick={() => { }} />
       <div className="nav-spacer" />
 
       {/* ── Hero ── */}
