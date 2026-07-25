@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import WishlistButton from './WishlistButton.jsx';
 import './BookCard.css';
 
-export default function BookCard({ book, onAddToCart }) {
+export default function BookCard({ book, onAddToCart, wishlist = [], onToggleWishlist = () => {} }) {
   return (
     <article className="book-card">
       <Link to={`/book/${book.id}`} className="book-card__link">
@@ -22,9 +23,12 @@ export default function BookCard({ book, onAddToCart }) {
           <span className="book-card__price">₹{book.price}</span>
         </div>
 
-        <button className="book-card__add" onClick={() => onAddToCart(book)}>
-          Add to cart
-        </button>
+        <div className="book-card__actions">
+          <button className="book-card__add" onClick={() => onAddToCart(book)}>
+            Add to cart
+          </button>
+          <WishlistButton active={wishlist?.includes(book.id)} onToggle={() => onToggleWishlist(book.id)} />
+        </div>
       </div>
     </article>
   );

@@ -23,8 +23,9 @@ export default function Navbar({ cartCount, onCartClick, searchQuery, setSearchQ
 
           {/* Desktop nav links */}
           <nav className="nav__links">
-            <a href="#shelf">The Shelf</a>
-            <a href="#catalog">Browse</a>
+            <a href="/#shelf">The Shelf</a>
+            <a href="/#catalog">Browse</a>
+            <Link to="/wishlist">Wishlist</Link>
             <Link to="/about">About</Link>
           </nav>
 
@@ -70,8 +71,9 @@ export default function Navbar({ cartCount, onCartClick, searchQuery, setSearchQ
         {/* Mobile dropdown menu */}
         {mobileOpen && (
           <div className="nav__mobile-menu">
-            <a href="#shelf" onClick={() => setMobileOpen(false)}>The Shelf</a>
-            <a href="#catalog" onClick={() => setMobileOpen(false)}>Browse</a>
+            <a href="/#shelf" onClick={() => setMobileOpen(false)}>The Shelf</a>
+            <a href="/#catalog" onClick={() => setMobileOpen(false)}>Browse</a>
+            <Link to="/wishlist" onClick={() => setMobileOpen(false)}>Wishlist</Link>
             <Link to="/about" onClick={() => setMobileOpen(false)}>About</Link>
             <input 
               className="nav__search nav__search--mobile" 

@@ -13,6 +13,7 @@ import AboutUs from './pages/AboutUs.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import TermsOfService from './pages/TermsOfService.jsx';
 import BookDetail from './pages/BookDetail.jsx';
+import Wishlist from './pages/Wishlist.jsx';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ export default function App() {
   const [cart, setCart] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [wishlist, setWishlist] = useState([]);
 
   function handleAddToCart(book) {
     setCart((prev) => {
@@ -32,6 +34,14 @@ export default function App() {
       return [...prev, { ...book, quantity: 1 }];
     });
     setIsCartOpen(true);
+  }
+
+  function toggleWishlist(bookId) {
+    setWishlist((prev) =>
+      prev.includes(bookId)
+        ? prev.filter((id) => id !== bookId)
+        : [...prev, bookId]
+    );
   }
 
   return (
@@ -49,8 +59,9 @@ export default function App() {
       <div className="nav-spacer" />
 
       <Routes>
-        <Route path="/" element={<Home onAddToCart={handleAddToCart} searchQuery={searchQuery} />} />
-        <Route path="/book/:id" element={<BookDetail onAddToCart={handleAddToCart} />} />
+        <Route path="/" element={<Home onAddToCart={handleAddToCart} searchQuery={searchQuery} wishlist={wishlist} onToggleWishlist={toggleWishlist} />} />
+        <Route path="/book/:id" element={<BookDetail onAddToCart={handleAddToCart} wishlist={wishlist} onToggleWishlist={toggleWishlist} />} />
+        <Route path="/wishlist" element={<Wishlist wishlist={wishlist} onAddToCart={handleAddToCart} onToggleWishlist={toggleWishlist} />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
