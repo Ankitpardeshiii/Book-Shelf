@@ -16,6 +16,7 @@ import './App.css';
 
 export default function App() {
   const [cart, setCart] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   function handleAddToCart(book) {
     setCart((prev) => {
@@ -35,11 +36,16 @@ export default function App() {
       <ScrollToTop />
       <CustomCursor />
 
-      <Navbar cartCount={cart.length} onCartClick={() => {}} />
+      <Navbar 
+        cartCount={cart.length} 
+        onCartClick={() => {}} 
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <div className="nav-spacer" />
 
       <Routes>
-        <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+        <Route path="/" element={<Home onAddToCart={handleAddToCart} searchQuery={searchQuery} />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
