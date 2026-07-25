@@ -11,6 +11,7 @@ import Home from './pages/Home.jsx';
 import AboutUs from './pages/AboutUs.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import TermsOfService from './pages/TermsOfService.jsx';
+import BookDetail from './pages/BookDetail.jsx';
 
 import './App.css';
 
@@ -46,6 +47,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home onAddToCart={handleAddToCart} searchQuery={searchQuery} />} />
+        <Route path="/book/:id" element={<BookDetail onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />

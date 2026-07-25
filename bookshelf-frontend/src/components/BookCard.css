@@ -99,3 +99,6 @@
   background: var(--ink);
   color: var(--paper);
 }
+
+.book-card__link { text-decoration: none; color: inherit; }
+
