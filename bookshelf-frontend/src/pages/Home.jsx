@@ -4,13 +4,20 @@ import GenreFilter from '../components/GenreFilter.jsx';
 import BookCard from '../components/BookCard.jsx';
 import { books, genres } from '../data/books.js';
 
-export default function Home({ onAddToCart }) {
+export default function Home({ onAddToCart, searchQuery = '' }) {
   const [activeGenre, setActiveGenre] = useState('All');
 
   const visibleBooks = useMemo(() => {
-    if (activeGenre === 'All') return books;
-    return books.filter((book) => book.genre === activeGenre);
-  }, [activeGenre]);
+    return books.filter((book) => {
+      const matchesGenre = activeGenre === 'All' || book.genre === activeGenre;
+      const query = searchQuery.toLowerCase();
+      const matchesSearch =
+        book.title.toLowerCase().includes(query) ||
+        book.author.toLowerCase().includes(query);
+
+      return matchesGenre && matchesSearch;
+    });
+  }, [activeGenre, searchQuery]);
 
   return (
     <>
