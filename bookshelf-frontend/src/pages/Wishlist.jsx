@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import BookCard from '../components/BookCard.jsx';
 import { books } from '../data/books.js';
+import { WishlistContext } from '../context/WishlistContext.jsx';
 import './Wishlist.css';
 
-export default function Wishlist({ wishlist = [], onAddToCart, onToggleWishlist }) {
+export default function Wishlist() {
+  const { wishlist } = useContext(WishlistContext);
   const wishlistedBooks = books.filter((book) => wishlist.includes(book.id));
 
   return (
@@ -25,9 +28,6 @@ export default function Wishlist({ wishlist = [], onAddToCart, onToggleWishlist 
               <BookCard 
                 key={book.id} 
                 book={book} 
-                onAddToCart={onAddToCart} 
-                wishlist={wishlist} 
-                onToggleWishlist={onToggleWishlist} 
               />
             ))}
           </div>
