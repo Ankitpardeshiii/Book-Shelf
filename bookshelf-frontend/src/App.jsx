@@ -18,7 +18,15 @@ export default function App() {
   const [cart, setCart] = useState([]);
 
   function handleAddToCart(book) {
-    setCart((prev) => [...prev, book]);
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === book.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.id === book.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prev, { ...book, quantity: 1 }];
+    });
   }
 
   return (
