@@ -1,8 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { books } from '../data/books.js';
+import WishlistButton from '../components/WishlistButton.jsx';
 import './BookDetail.css';
 
-export default function BookDetail({ onAddToCart }) {
+export default function BookDetail({ onAddToCart, wishlist = [], onToggleWishlist = () => {} }) {
   const { id } = useParams();
   
   const book = books.find((item) => item.id === id);
@@ -45,9 +46,12 @@ export default function BookDetail({ onAddToCart }) {
             {book.year && <p><strong>Publication Year:</strong> {book.year}</p>}
           </div>
 
-          <button className="book-detail-add-btn" onClick={() => onAddToCart && onAddToCart(book)}>
-            Add to cart
-          </button>
+          <div className="book-detail-actions">
+            <button className="book-detail-add-btn" onClick={() => onAddToCart && onAddToCart(book)}>
+              Add to cart
+            </button>
+            <WishlistButton active={wishlist?.includes(book.id)} onToggle={() => onToggleWishlist(book.id)} />
+          </div>
         </div>
       </div>
     </main>

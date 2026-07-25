@@ -4,7 +4,7 @@ import GenreFilter from '../components/GenreFilter.jsx';
 import BookCard from '../components/BookCard.jsx';
 import { books, genres } from '../data/books.js';
 
-export default function Home({ onAddToCart, searchQuery = '' }) {
+export default function Home({ onAddToCart, searchQuery = '', wishlist, onToggleWishlist }) {
   const [activeGenre, setActiveGenre] = useState('All');
 
   const visibleBooks = useMemo(() => {
@@ -33,7 +33,7 @@ export default function Home({ onAddToCart, searchQuery = '' }) {
 
           <div className="catalog__grid">
             {visibleBooks.map((book) => (
-              <BookCard key={book.id} book={book} onAddToCart={onAddToCart} />
+              <BookCard key={book.id} book={book} onAddToCart={onAddToCart} wishlist={wishlist} onToggleWishlist={onToggleWishlist} />
             ))}
           </div>
         </div>
