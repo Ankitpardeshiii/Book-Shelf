@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import CustomCursor from './components/CustomCursor.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
+import CartDrawer from './components/CartDrawer.jsx';
 
 import Home from './pages/Home.jsx';
 import AboutUs from './pages/AboutUs.jsx';
@@ -18,6 +19,7 @@ import './App.css';
 export default function App() {
   const [cart, setCart] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   function handleAddToCart(book) {
     setCart((prev) => {
@@ -29,6 +31,7 @@ export default function App() {
       }
       return [...prev, { ...book, quantity: 1 }];
     });
+    setIsCartOpen(true);
   }
 
   return (
@@ -39,7 +42,7 @@ export default function App() {
 
       <Navbar 
         cartCount={cart.length} 
-        onCartClick={() => {}} 
+        onCartClick={() => setIsCartOpen(true)} 
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
@@ -54,6 +57,12 @@ export default function App() {
       </Routes>
 
       <Footer />
+      
+      <CartDrawer 
+        cart={cart} 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+      />
     </div>
   );
 }
