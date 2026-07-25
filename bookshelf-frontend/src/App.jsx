@@ -1,29 +1,21 @@
-import { useMemo, useState } from 'react';
-
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import ThemeToggle from './components/ThemeToggle.jsx';
-
 import ScrollToTop from './components/ScrollToTop.jsx';
-
-
 import CustomCursor from './components/CustomCursor.jsx';
-
 import Navbar from './components/Navbar.jsx';
-import Hero from './components/Hero.jsx';
-import GenreFilter from './components/GenreFilter.jsx';
-import BookCard from './components/BookCard.jsx';
 import Footer from './components/Footer.jsx';
-import { books, genres } from './data/books.js';
+
+import Home from './pages/Home.jsx';
+import AboutUs from './pages/AboutUs.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
+import TermsOfService from './pages/TermsOfService.jsx';
+
 import './App.css';
 
 export default function App() {
-  const [activeGenre, setActiveGenre] = useState('All');
   const [cart, setCart] = useState([]);
-
-  const visibleBooks = useMemo(() => {
-    if (activeGenre === 'All') return books;
-    return books.filter((book) => book.genre === activeGenre);
-  }, [activeGenre]);
 
   function handleAddToCart(book) {
     setCart((prev) => [...prev, book]);
@@ -31,34 +23,19 @@ export default function App() {
 
   return (
     <div className="app">
-
-
       <ThemeToggle />
-
       <ScrollToTop />
-
       <CustomCursor />
 
       <Navbar cartCount={cart.length} onCartClick={() => {}} />
       <div className="nav-spacer" />
-      <Hero />
 
-      <main className="catalog" id="catalog">
-        <div className="catalog__inner">
-          <div className="catalog__header">
-            <h2 className="catalog__title">Browse the catalog</h2>
-            <p className="catalog__count">{visibleBooks.length} titles</p>
-          </div>
-
-          <GenreFilter genres={genres} active={activeGenre} onSelect={setActiveGenre} />
-
-          <div className="catalog__grid">
-            {visibleBooks.map((book) => (
-              <BookCard key={book.id} book={book} onAddToCart={handleAddToCart} />
-            ))}
-          </div>
-        </div>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+      </Routes>
 
       <Footer />
     </div>
