@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext.jsx';
 import './Navbar.css';
 
-export default function Navbar({ cartCount, onCartClick, searchQuery, setSearchQuery }) {
+export default function Navbar({ searchQuery, setSearchQuery }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { cart, setIsCartOpen } = useContext(CartContext);
 
   return (
     <div className="nav-wrapper">
@@ -38,9 +40,9 @@ export default function Navbar({ cartCount, onCartClick, searchQuery, setSearchQ
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="nav__cart" onClick={onCartClick} aria-label="Open cart">
+            <button className="nav__cart" onClick={() => setIsCartOpen(true)} aria-label="Open cart">
               Cart
-              <span className="nav__cart-count">{cartCount}</span>
+              <span className="nav__cart-count">{cart.length}</span>
             </button>
           </div>
 
