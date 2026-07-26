@@ -14,6 +14,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import TermsOfService from './pages/TermsOfService.jsx';
 import BookDetail from './pages/BookDetail.jsx';
 import Wishlist from './pages/Wishlist.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 import './App.css';
@@ -40,6 +42,8 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
